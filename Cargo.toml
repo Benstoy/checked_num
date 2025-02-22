@@ -1,6 +1,6 @@
 [package]
 name = "checked_num"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 
 description = "Overflow-checked numbers for safety without sacrificing ergonomics."
@@ -9,7 +9,7 @@ repository = "https://github.com/benstoy/checked_num"
 license = "MIT"
 readme = "README.md"
 
-keywords = ["no_std", "checked", "math", "overflow", "num"]
+keywords = ["number", "int", "num", "overflow", "checked"]
 categories = ["data-structures", "mathematics", "no-std", "rust-patterns"]
 
 [dependencies]
