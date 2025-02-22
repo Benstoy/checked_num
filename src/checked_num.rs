@@ -12,12 +12,12 @@ use crate::{CheckedU32, builtin_int::BuiltinInt};
 /// Overflow-Checked Number.
 /// Can be used like any other integer type.
 ///
-/// # Adding to non-checked types
-/// Integer types of the same bitsize can be added to the CheckedNum
-/// as long as they are added on the right side of the binop.
+/// # Operations with non-checked types
+/// Integer types of the same bitsize can be used in binary operations
+/// with `CheckedNum`, as long as they appear on the right-hand side.
 ///
 /// These calculations will behave exactly the same
-/// as adding checked numbers to checked numbers
+/// as when performed between two `CheckedNum` values.
 ///
 /// Example:
 /// ```rust
@@ -70,12 +70,13 @@ use crate::{CheckedU32, builtin_int::BuiltinInt};
 ///
 /// assert_ne!(a + b, a + b);
 /// ```
+#[must_use]
 #[derive(Debug, Clone, Copy)]
-#[must_use = ""]
 pub struct CheckedNum<T: CheckedNumTraits>(Option<T>);
 
-pub trait CheckedNumTraits: Debug + Copy {}
-impl<T: Debug + Copy> CheckedNumTraits for T {}
+// This bound is purposfully restrictive to avoid breaking changes
+pub trait CheckedNumTraits: BuiltinInt {}
+impl<T: BuiltinInt> CheckedNumTraits for T {}
 
 impl<T: CheckedNumTraits> CheckedNum<T> {
     const OVERFLOWED: Self = Self(None);

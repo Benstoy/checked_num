@@ -3,7 +3,7 @@ use core::num::NonZero;
 /// All built-in Integer types
 ///
 /// Excludes `Wrapping<_>``
-pub trait BuiltinInt {}
+pub trait BuiltinInt: Copy {}
 
 impl BuiltinInt for i128 {}
 impl BuiltinInt for i64 {}

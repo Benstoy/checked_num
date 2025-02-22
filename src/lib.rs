@@ -1,14 +1,56 @@
 #![no_std]
 
+//! # CheckedNum
+//!
+//! Overflow-checked numbers for safety without sacrificing ergonomics.
+//!
+//! ## Usage
+//!
+//! With `checked_num`
+//!
+//! ```rust
+//! use checked_num::CheckedU16;
+//!
+//! assert_eq!((CheckedU16::new(123) + 210) * 2, 666)
+//! ```
+//!
+//! Without `checked_num`
+//!
+//! ```rust
+//! assert!(
+//!     123u16.checked_add(210)
+//!         .and_then(|num| num.checked_mul(2))
+//!         .and_then(|num| Some(num == 666))
+//!         .is_some_and(|r| r)
+//! );
+//! ```
+//!
+//! ## Limitations
+//!
+//! Due to the orphan rule, `CheckedNum` types must appear on the left-hand side of mixed-type operations:
+//!
+//! ```rust
+//! use checked_num::CheckedU16;
+//! let a = CheckedU16::new(123);
+//! let b = 210;
+//! assert_eq!(a + b, 333) // correct
+//! ```
+//!
+//! ```compile_fail
+//! use checked_num::CheckedU16;
+//!
+//! let a = CheckedU16::new(123);
+//! let b = 210;
+//!
+//! assert_eq!(b + a, 333) // fails to compile
+//! ```
+
 use core::num::NonZero;
 
-use checked_num::CheckedNum;
+pub use checked_num::CheckedNum;
 
 mod builtin_int;
 mod checked_num;
-
-// `CheckedNum` is not publicly exposed to make
-// changing bounds a backwards-compatible change.
 
 pub type CheckedU128 = CheckedNum<u128>;
 pub type CheckedU64 = CheckedNum<u64>;

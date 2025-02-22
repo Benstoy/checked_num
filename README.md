@@ -2,8 +2,6 @@
 
 Overflow-checked numbers for safety without sacrificing ergonomics.
 
----
-
 ## Usage
 
 With `checked_num`
@@ -18,7 +16,7 @@ Without `checked_num`
 
 ```rust
 assert!(
-    a.checked_add(210)
+    123u16.checked_add(210)
         .and_then(|num| num.checked_mul(2))
         .and_then(|num| Some(num == 666))
         .is_some_and(|r| r)
@@ -61,13 +59,15 @@ Areas for improvement:
 Due to the orphan rule, `CheckedNum` types must appear on the left-hand side of mixed-type operations:
 
 ```rust
-use checked_num::CheckedU16; 
+use checked_num::CheckedU16;
+
 let a = CheckedU16::new(123);
-let b = 210; 
+let b = 210;
+
 assert_eq!(a + b, 333) // correct
 ```
 
-```compile_fail
+```rust
 use checked_num::CheckedU16;
 
 let a = CheckedU16::new(123);
