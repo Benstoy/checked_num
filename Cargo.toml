@@ -1,0 +1,16 @@
+[package]
+name = "checked_num"
+version = "0.1.0"
+edition = "2024"
+
+description = "Adds Checked Number types. Handle overflows ergonomically."
+repository = "https://github.com/benstoy/checked_num"
+
+license = "MIT"
+readme = "README.md"
+
+keywords = ["no_std", "checked", "math", "overflow", "num"]
+categories = ["data-structures", "mathematics", "no-std", "rust-patterns", ""]
+
+[dependencies]
+num-traits = "0.2.19"
