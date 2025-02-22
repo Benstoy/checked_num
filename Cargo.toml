@@ -3,7 +3,7 @@ name = "checked_num"
 version = "0.1.0"
 edition = "2024"
 
-description = "Adds Checked Number types. Handle overflows ergonomically."
+description = "Overflow-checked numbers for safety without sacrificing ergonomics."
 repository = "https://github.com/benstoy/checked_num"
 
 license = "MIT"

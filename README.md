@@ -1,6 +1,6 @@
 # CheckedNum
 
-Overflow-checked numbers for safety that isn't an ergonomic nightmare.
+Overflow-checked numbers for safety without sacrificing ergonomics.
 
 ---
 
@@ -27,11 +27,11 @@ assert!(
 
 ## Features
 
-- `#![no_std]` is enabled per default.
+- `#![no_std]` enabled per default.
 
-- Supports `NonZero<_>` types for 0 memory overhead.
+- Supports `NonZero<_>` types for zero memory overhead.
 
-- `num-traits` is the only dependency
+- Only depends on `num-traits`.
 
 - Supports checked versions of `Add`, `Sub`, `Mul`, `Div`, `Rem`, `Shl`, `Shr` and `Neg` 
 
@@ -39,26 +39,26 @@ assert!(
 
 ## Contributing
 
-A few things that could still be improved:
+Areas for improvement:
 
 - Implement the `?` operator.
 
 - Implement checked casts.
 
-- Add macro that checks whether every arithmetic operation is actually checked.
-  (to avoid accidentally using unchecked operations due to confusing operator precendence.)
+- Introduce a macro that ensures all arithmetic operations are checked,
+  preventing unintended unchecked operations due to precedence issues.
 
 - Implement `num_traits::CheckedEuclid` and `num_traits::MulAdd`.
 
-- Implement `_Assign` operations.
+- Add `_Assign` variants for supported operations.
 
-- Add more documentation.
+- Expand documentation.
 
 - Add more tests.
 
 ## Limitations
 
-Duo to the orphan rule you can only add normal numbers to the checked numbers not the other way around
+Due to the orphan rule, `CheckedNum` types must appear on the left-hand side of mixed-type operations:
 
 ```rust
 use checked_num::CheckedU16; 
