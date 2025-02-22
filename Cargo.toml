@@ -10,7 +10,7 @@ license = "MIT"
 readme = "README.md"
 
 keywords = ["no_std", "checked", "math", "overflow", "num"]
-categories = ["data-structures", "mathematics", "no-std", "rust-patterns", ""]
+categories = ["data-structures", "mathematics", "no-std", "rust-patterns"]
 
 [dependencies]
 num-traits = "0.2.19"
