@@ -89,6 +89,13 @@ impl<T: CheckedNumTraits> CheckedNum<T> {
         self.0
     }
 
+    pub fn ok_or<E>(self, err: E) -> Result<T, E> {
+        match self.0 {
+            Some(v) => Ok(v),
+            None => Err(err),
+        }
+    }
+
     pub fn did_overflow(&self) -> bool {
         self.as_option().is_none()
     }
@@ -110,7 +117,7 @@ impl<T: CheckedNumTraits> Iterator for CheckedNum<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.as_option().take()
+        self.as_option()
     }
 }
 
