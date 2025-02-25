@@ -117,7 +117,7 @@ impl<T: CheckedNumTraits> Iterator for CheckedNum<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.as_option()
+        self.0.take()
     }
 }
 
